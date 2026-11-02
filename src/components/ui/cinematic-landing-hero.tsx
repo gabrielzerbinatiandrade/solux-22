@@ -259,10 +259,20 @@ export function CinematicHero({
       gsap.set(".mockup-scroll-wrapper", { autoAlpha: 0 });
       gsap.set(".cta-wrapper", { autoAlpha: 0, scale: 0.8, filter: "blur(30px)" });
 
-      const introTl = gsap.timeline({ delay: 0.3 });
+      const introTl = gsap.timeline({ delay: 0.15 });
+      const prefersQuiet = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       introTl
-        .to(".text-track", { duration: 1.1, autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, ease: "expo.out" })
-        .to(".text-days", { duration: 1.4, clipPath: "inset(0 0% 0 0)", ease: "power4.inOut" }, "-=1.0");
+        .to(".text-track", { duration: prefersQuiet ? 0 : 1, autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, ease: "power3.out" }, 0.1)
+        .to(".text-days", { duration: prefersQuiet ? 0 : 1.15, clipPath: "inset(0 0% 0 0)", ease: "power3.inOut" }, 0.25);
+      if (!prefersQuiet) {
+        introTl
+          .from('.impact-eyebrow', {opacity:0,y:12,duration:.65,ease:'power3.out'}, 0)
+          .from('.impact-photo', {clipPath:'inset(10% 0 90% 0 round 8px)',duration:1.45,ease:'power4.inOut'}, .05)
+          .from('.impact-photo>img', {scale:1.12,duration:1.8,ease:'power3.out'}, .05)
+          .from('.impact-orange-plane', {opacity:0,x:-35,rotation:-4,duration:1.1,ease:'power3.out'}, .4)
+          .from('.impact-photo-index, .impact-photo-caption', {opacity:0,y:18,stagger:.15,duration:.8,ease:'power3.out'}, .95)
+          .from('.impact-description, .impact-actions, .impact-meta', {opacity:0,y:20,stagger:.13,duration:.85,ease:'power3.out'}, .65);
+      }
 
       const scrollTl = gsap.timeline({
         scrollTrigger: {
