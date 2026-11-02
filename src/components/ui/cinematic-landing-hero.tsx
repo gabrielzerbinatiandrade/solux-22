@@ -316,7 +316,7 @@ export function CinematicHero({
       <div className="hero-text-wrapper impact-intro absolute z-10">
         <div className="impact-copy">
           <div className="impact-eyebrow"><span/> SOFTWARE PARA TERRAPLENAGEM</div>
-          <h1 className="impact-title" aria-label="A obra não para. Sua gestão acompanha.">{['A obra não para.','Sua gestão','acompanha.'].map((line,row)=><span className={row===0?'text-track':'text-days'} aria-hidden="true" key={line}>{Array.from(line).map((letter,i)=><span className="hero-letter" key={i} style={{animationDelay:(.12+row*.15+i*.025)+'s'}}>{letter===' '?' ':letter}</span>)}</span>)}</h1>
+          <h1 className="impact-title"><span className="text-track">A obra não para.</span><span className="text-days">Sua gestão<br/>acompanha.</span></h1>
           <p className="impact-description">O Solux é um software de gestão para terraplenagem. Controle frota, abastecimentos, obras e financeiro em um só sistema, 100% em nuvem.</p>
           <div className="impact-actions"><a className="impact-primary" href="#contato"><GlassLayers/>Agendar demonstração <ArrowUpRight size={17}/></a><a className="impact-secondary" href="#sistema">Conhecer o Solux <ArrowDown size={15}/></a></div>
           <div className="impact-meta"><span>FROTA</span><i/><span>OBRAS</span><i/><span>FINANCEIRO</span><span className="impact-online"><b/>100% ONLINE</span></div>
