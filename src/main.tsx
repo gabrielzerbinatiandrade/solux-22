@@ -22,6 +22,7 @@ import './hero-impact.css';
 import './about-editorial.css';
 import './refinement.css';
 import './second-pass.css';
+import './studio-refinement.css';
 
 const whatsapp='https://wa.me/5516992411353';
 function Logo({light=false}:{light?:boolean}){return <a href="#inicio" aria-label="Solux início" className={'logo '+(light?'light':'')}><img src={assetUrl('/solux-logo-transparent.png')} alt="SOLUX Sistema Gerencial"/></a>}
