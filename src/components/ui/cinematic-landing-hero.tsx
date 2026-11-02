@@ -253,26 +253,10 @@ export function CinematicHero({
     const isMobile = window.innerWidth < 768;
 
     const ctx = gsap.context(() => {
-      gsap.set(".text-track", { autoAlpha: 0, y: 60, scale: 0.85, filter: "blur(20px)", rotationX: -20 });
-      gsap.set(".text-days", { autoAlpha: 1, clipPath: "inset(0 100% 0 0)" });
+      gsap.set(".text-track, .text-days", { autoAlpha: 1 });
       gsap.set(".main-card", { y: window.innerHeight + 200, autoAlpha: 1 });
       gsap.set(".mockup-scroll-wrapper", { autoAlpha: 0 });
       gsap.set(".cta-wrapper", { autoAlpha: 0, scale: 0.8, filter: "blur(30px)" });
-
-      const introTl = gsap.timeline({ delay: 0.15 });
-      const prefersQuiet = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      introTl
-        .to(".text-track", { duration: prefersQuiet ? 0 : 1, autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", rotationX: 0, ease: "power3.out" }, 0.1)
-        .to(".text-days", { duration: prefersQuiet ? 0 : 1.15, clipPath: "inset(0 0% 0 0)", ease: "power3.inOut" }, 0.25);
-      if (!prefersQuiet) {
-        introTl
-          .from('.impact-eyebrow', {opacity:0,y:12,duration:.65,ease:'power3.out'}, 0)
-          .from('.impact-photo', {clipPath:'inset(10% 0 90% 0 round 8px)',duration:1.45,ease:'power4.inOut'}, .05)
-          .from('.impact-photo>img', {scale:1.12,duration:1.8,ease:'power3.out'}, .05)
-          .from('.impact-orange-plane', {opacity:0,x:-35,rotation:-4,duration:1.1,ease:'power3.out'}, .4)
-          .from('.impact-photo-index, .impact-photo-caption', {opacity:0,y:18,stagger:.15,duration:.8,ease:'power3.out'}, .95)
-          .from('.impact-description, .impact-actions, .impact-meta', {opacity:0,y:20,stagger:.13,duration:.85,ease:'power3.out'}, .65);
-      }
 
       const scrollTl = gsap.timeline({
         scrollTrigger: {
@@ -332,7 +316,7 @@ export function CinematicHero({
       <div className="hero-text-wrapper impact-intro absolute z-10">
         <div className="impact-copy">
           <div className="impact-eyebrow"><span/> SOFTWARE PARA TERRAPLENAGEM</div>
-          <h1 className="impact-title"><span className="text-track gsap-reveal">A obra não para.</span><span className="text-days gsap-reveal">Sua gestão<br/>acompanha.</span></h1>
+          <h1 className="impact-title" aria-label="A obra não para. Sua gestão acompanha.">{['A obra não para.','Sua gestão','acompanha.'].map((line,row)=><span className={row===0?'text-track':'text-days'} aria-hidden="true" key={line}>{Array.from(line).map((letter,i)=><span className="hero-letter" key={i} style={{animationDelay:(.12+row*.15+i*.025)+'s'}}>{letter===' '?' ':letter}</span>)}</span>)}</h1>
           <p className="impact-description">O Solux é um software de gestão para terraplenagem. Controle frota, abastecimentos, obras e financeiro em um só sistema, 100% em nuvem.</p>
           <div className="impact-actions"><a className="impact-primary" href="#contato"><GlassLayers/>Agendar demonstração <ArrowUpRight size={17}/></a><a className="impact-secondary" href="#sistema">Conhecer o Solux <ArrowDown size={15}/></a></div>
           <div className="impact-meta"><span>FROTA</span><i/><span>OBRAS</span><i/><span>FINANCEIRO</span><span className="impact-online"><b/>100% ONLINE</span></div>

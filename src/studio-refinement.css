@@ -1,3 +1,19 @@
+/* Opening animation belongs to inner elements, independent of the scroll timeline. */
+.hero-letter{display:inline-block;animation:solux-letter-in .85s cubic-bezier(.16,1,.3,1) both}
+.hero-letter-line{display:block;white-space:nowrap}
+.cinematic-prompt .impact-title .text-days{background:none;-webkit-text-fill-color:currentColor;color:#f47b20}
+.impact-photo{animation:solux-photo-open 1.45s .12s cubic-bezier(.76,0,.24,1) both;transform-origin:70% 60%}
+.impact-photo>img{animation:solux-photo-depth 1.9s .12s cubic-bezier(.16,1,.3,1) both!important}
+.impact-orange-plane{animation:solux-plane-in 1.3s .25s cubic-bezier(.16,1,.3,1) both}
+.impact-description,.impact-actions,.impact-meta{animation:solux-copy-in .8s .65s cubic-bezier(.16,1,.3,1) both}
+.impact-actions{animation-delay:.78s}.impact-meta{animation-delay:.9s}
+@keyframes solux-letter-in{from{opacity:0;transform:translateY(38px) rotateX(-40deg)}to{opacity:1;transform:translateY(0) rotateX(0)}}
+@keyframes solux-photo-open{from{clip-path:inset(0 100% 0 0);transform:perspective(1200px) rotateY(-8deg) translateX(24px)}to{clip-path:inset(0);transform:perspective(1200px) rotateY(0) translateX(0)}}
+@keyframes solux-photo-depth{from{transform:scale(1.13) translateX(-2%)}to{transform:scale(1) translateX(0)}}
+@keyframes solux-plane-in{from{opacity:0;transform:translateX(-30px) rotate(-3deg)}to{opacity:1;transform:translateX(0) rotate(3deg)}}
+@keyframes solux-copy-in{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:translateY(0)}}
+.prompt-reduced .hero-letter,.prompt-reduced .impact-photo,.prompt-reduced .impact-photo>img,.prompt-reduced .impact-orange-plane,.prompt-reduced .impact-description,.prompt-reduced .impact-actions,.prompt-reduced .impact-meta{animation:none!important}
+@media(prefers-reduced-motion:reduce){.hero-letter,.impact-photo,.impact-photo>img,.impact-orange-plane,.impact-description,.impact-actions,.impact-meta{animation:none!important}}
 /* Solux: photographic opening, tactile editorial surfaces and a luminous system map. */
 .cinematic-prompt .impact-intro{gap:7%;padding-inline:7%}
 .impact-eyebrow{font-size:10px;letter-spacing:2px;color:#555}
