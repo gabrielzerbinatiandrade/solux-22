@@ -1,0 +1,76 @@
+.scroll-segments.segments{position:relative;height:400vh;overflow:visible;scroll-margin-top:0}
+.segments-sticky{position:sticky;top:0;height:100vh;height:100svh;display:flex;align-items:center;overflow:hidden;background:#111}
+.scroll-segments .segments-inner{width:100%;padding-block:110px 50px;align-items:center}
+.scroll-segments .sector-visual{height:min(66vh,620px);min-height:460px}
+.scroll-segments .sector-visual>.segment-photo{opacity:0;transition:opacity .55s ease;transform:none}
+.scroll-segments .sector-visual>.segment-photo.is-active{opacity:1}
+.scroll-segments .sector-detail{z-index:2;animation:segment-content-in .4s ease both}
+.scroll-segments .photo-corner{z-index:2}
+.segment-scroll-hint{display:flex;align-items:center;gap:9px;font-size:9px;color:#ffffff70;margin-top:24px}
+.segment-scroll-hint>svg{color:#f47b20}
+.segment-scroll-hint>b{font-family:monospace;font-size:9px;font-weight:400;margin-left:auto;color:#ffffffa6;letter-spacing:1px}
+.segment-photo-progress{position:absolute;bottom:15px;left:35px;right:35px;display:flex;gap:5px;z-index:2}
+.segment-photo-progress>span{height:2px;background:#ffffff40;flex:1;transition:background .3s}
+.segment-photo-progress>span.is-active{background:#f47b20}
+@keyframes segment-content-in{from{opacity:0;transform:translateY(9px)}to{opacity:1;transform:translateY(0)}}
+@media(max-height:760px) and (min-width:761px){.scroll-segments .segments-inner{padding-top:100px;padding-bottom:25px}.scroll-segments .sector-visual{min-height:390px;height:65vh}.scroll-segments h2{font-size:34px}.scroll-segments .segments-copy>p{margin-top:16px;font-size:12px}.scroll-segments .sector-tabs{margin-top:20px}.scroll-segments .sector-tabs button{padding:15px 0}.segment-scroll-hint{margin-top:17px}}
+@media(max-width:760px){.scroll-segments.segments{height:360vh}.scroll-segments .segments-inner{display:grid;grid-template-columns:1fr;gap:18px;padding:95px 23px 25px;height:100%;align-content:center}.scroll-segments .eyebrow{font-size:7px;margin-bottom:13px}.scroll-segments h2{font-size:28px;line-height:1.1}.scroll-segments .segments-copy>p{display:none}.scroll-segments .sector-tabs{margin:13px 0 0}.scroll-segments .sector-tabs button{font-size:12px;padding:10px 0;gap:15px}.scroll-segments .sector-tabs svg{width:15px;height:15px}.segment-scroll-hint{font-size:8px;margin-top:12px}.scroll-segments .sector-visual{height:34vh;min-height:230px}.scroll-segments .sector-detail{bottom:25px;left:20px;right:20px}.scroll-segments .sector-detail>span{font-size:6px;letter-spacing:1px}.scroll-segments .sector-detail h3{font-size:24px;margin-top:8px}.scroll-segments .sector-detail p{font-size:10px;line-height:1.6;margin-top:9px}.scroll-segments .sector-detail .button{margin-top:12px;padding:11px 14px;font-size:9px}.scroll-segments .photo-corner{font-size:6px;padding:5px 8px;top:15px;right:15px}.segment-photo-progress{left:20px;right:20px;bottom:12px}}
+@media(max-width:760px) and (max-height:690px){.scroll-segments .segments-inner{padding-top:85px;gap:12px;padding-bottom:15px}.scroll-segments h2{font-size:24px}.scroll-segments .eyebrow{margin-bottom:9px}.scroll-segments .sector-tabs button{padding:8px 0;font-size:11px}.scroll-segments .sector-visual{height:32vh;min-height:200px}.scroll-segments .sector-detail h3{font-size:21px}.scroll-segments .sector-detail p{font-size:9px}.segment-scroll-hint{margin-top:9px}}
+@media(prefers-reduced-motion:reduce){.scroll-segments .sector-detail{animation:none}.scroll-segments .sector-visual>.segment-photo{transition:none}}
+/* Fondu photographique et progression continue, sans accrochage de la page. */
+.scroll-segments .sector-tabs button{position:relative;overflow:hidden;transition:none}
+.scroll-segments .sector-tabs button>small{display:inline-block;flex-shrink:0;transform-origin:center;color:inherit}
+.segment-tab-title{display:block;text-align:left}
+.segment-tab-arrow{display:flex;align-items:center;justify-content:center;margin-left:auto;flex-shrink:0}
+.scroll-segments .segment-tab-arrow svg{margin:0}
+.segment-step-fill{position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,#f47b20,#f47b2080);transform-origin:left;pointer-events:none}
+.scroll-segments .sector-visual>.segment-photo{transition:none;will-change:opacity,transform}
+.scroll-segments .sector-detail{animation:none;will-change:opacity,transform}
+.segment-scroll-hint>b{display:flex;align-items:center;gap:5px}
+.segment-scroll-hint>b>span{display:inline-block}
+/* Dernière passe: photographies liées au geste et repère unique. */
+.scroll-segments.segments{height:340vh}
+.scroll-segments .sector-overlay{z-index:5;pointer-events:none;background:linear-gradient(180deg,#00000003 25%,#0004 55%,#000d)}
+.scroll-segments .sector-detail{z-index:6}
+.scroll-segments .photo-corner,.scroll-segments .segment-photo-progress{z-index:7}
+.scroll-segments .sector-tabs{position:relative}
+.scroll-segments .sector-tabs button{overflow:visible;padding-left:17px;padding-right:12px;border-bottom:1px solid #ffffff14;border-radius:0}
+.scroll-segments .sector-tabs button:before{content:'';position:absolute;inset:7px 0;border-radius:8px;background:linear-gradient(90deg,#f47b200d,transparent);opacity:0;transition:opacity .4s}
+.scroll-segments .sector-tabs button[aria-selected=true]:before{opacity:1}
+.segment-active-marker{position:absolute;left:0;top:15px;bottom:15px;width:2px;border-radius:3px;background:#f47b20;box-shadow:0 0 12px #f47b2020;pointer-events:none}
+.scroll-segments .sector-tabs button>small,.segment-tab-title,.segment-tab-arrow{position:relative}
+.segment-photo-progress>span{position:relative;overflow:hidden;background:#ffffff33;height:2px;border-radius:3px}
+.segment-photo-progress .segment-step-fill{height:100%;background:#f47b20}
+.scroll-segments .sector-visual{border-radius:9px;isolation:isolate}
+.scroll-segments .sector-detail h3{letter-spacing:-.8px}
+.segment-scroll-hint{color:#ffffff59}
+@media(max-width:760px){.scroll-segments.segments{height:320vh}.segment-active-marker{top:9px;bottom:9px}.scroll-segments .sector-tabs button{padding-left:12px;padding-right:6px}}
+.segment-terrain-art{position:absolute;top:0;left:0;width:100%;height:110px;object-fit:cover;pointer-events:none;opacity:.65;mask-image:linear-gradient(#000, #0009 70%,transparent)}
+.segments-sticky>.segments-inner{position:relative;z-index:1}
+@media(max-width:760px){.segment-terrain-art{height:90px;object-position:80% center;opacity:.45}}
+.segment-entry-transition{height:110px;width:100%;background:#fff;margin-top:10px;margin-bottom:-1px;line-height:0;overflow:hidden}
+.segment-entry-transition>svg{width:100%;height:100%;display:block}
+@media(max-width:760px){.segment-entry-transition{height:65px;margin-top:0}}
+/* Corte arquitetônico discreto na entrada da seção escura. */
+.segment-entry-transition{height:58px;margin-top:16px}
+@media(max-width:760px){.segment-entry-transition{height:32px;margin-top:8px}}
+/* Transição estrutural de maior presença, com camada laranja da marca. */
+.segment-entry-transition{height:150px;margin-top:25px;background:#fff}
+@media(max-width:760px){.segment-entry-transition{height:88px;margin-top:18px}}
+/* Abertura de app: cartão preto cresce até ocupar toda a tela. */
+.app-opening-segments.scroll-segments.segments{height:430vh;background:#fff}
+.app-opening-segments .segments-sticky{background:#fff;isolation:isolate}
+.segment-expanding-panel{position:absolute;inset:0;background:#111;z-index:0;will-change:clip-path;overflow:hidden}
+.segment-app-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:15px;color:#fff}
+.segment-app-label>span{font:600 44px 'Outfit',sans-serif;letter-spacing:-2px}
+.segment-app-label>span>b{color:#f47b20;font-weight:600}
+.segment-app-label>small{font-size:7px;letter-spacing:2px;color:#ffffff80}
+.app-opening-segments .segments-inner{position:relative;z-index:1;will-change:transform,opacity}
+@media(max-width:760px){.app-opening-segments.scroll-segments.segments{height:410vh}.segment-app-label>span{font-size:26px}.segment-app-label>small{font-size:5px;letter-spacing:.8px}}
+.app-opening-segments.scroll-segments.segments{height:350vh}
+@media(max-width:760px){.app-opening-segments.scroll-segments.segments{height:330vh}}
+/* Abertura em camadas: perspectiva, laranja de apoio e reflexo de passagem. */
+.segment-orange-underlay{position:absolute;inset:-2px;background:#f47b20;z-index:0;pointer-events:none;will-change:clip-path,transform,opacity}
+.app-opening-segments .segment-expanding-panel{z-index:1;backface-visibility:hidden;transform-origin:50% 65%;background:radial-gradient(ellipse at 10% 0%,#252525,#111 65%)}
+.app-opening-segments .segments-inner{z-index:2}
+.segment-entry-sheen{position:absolute;top:-30%;bottom:-30%;left:0;width:65%;pointer-events:none;background:linear-gradient(100deg,transparent,#ffffff70 50%,transparent);transform:skewX(-20deg);mix-blend-mode:screen}

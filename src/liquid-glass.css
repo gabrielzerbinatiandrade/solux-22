@@ -1,0 +1,66 @@
+/* Camadas, valores de distorção e easing do componente anexado. */
+.liquid-bar,.liquid-action,.hero-motion-toggle{isolation:isolate;position:relative;overflow:hidden}
+.hero-motion-toggle{position:absolute}
+.liquid-glass-layers{position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;display:block}
+.liquid-glass-layers>span{position:absolute;inset:0;border-radius:inherit;display:block}
+.liquid-distortion{backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);filter:url(#glass-distortion);isolation:isolate;overflow:hidden}
+.liquid-tint{background:rgba(255,255,255,.25)}
+.liquid-shine{box-shadow:inset 2px 2px 1px 0 rgba(255,255,255,.5),inset -1px -1px 1px 1px rgba(255,255,255,.5)}
+.nav.liquid-bar{background:#f7f7f238;backdrop-filter:none;-webkit-backdrop-filter:none;border-radius:0 0 24px 24px;box-shadow:0 6px 6px #0000000d,0 0 20px #00000008}
+.liquid-action{background:#ed7e23a6!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+.cinematic-prompt .liquid-prompt-actions{align-items:center;gap:24px}
+.cinematic-prompt .liquid-prompt-actions>a{display:block;padding:0;border:0;border-radius:24px;background:none;box-shadow:none;backdrop-filter:none;-webkit-backdrop-filter:none;transform:none;font-size:13px;font-weight:600;color:#384632}
+.liquid-prompt-actions>a>div{border-radius:24px;isolation:isolate;min-width:220px;justify-content:center}
+.liquid-prompt-actions>a:first-child>div{background:#e77d242b;color:#8a440f}
+.liquid-prompt-actions>a:nth-child(2)>div{background:#ffffff1a;color:#42513a}
+.liquid-prompt-actions>a>div>div:last-child>div>span{display:flex;align-items:center;gap:25px;white-space:nowrap}
+.liquid-prompt-actions>a>div>div:last-child>div>span>span{font-size:18px}
+.liquid-prompt-actions .rounded-inherit{border-radius:inherit}
+.liquid-prompt-actions>a:hover>div{border-radius:32px}
+.liquid-bar>.logo{mix-blend-mode:multiply}
+@media(max-width:760px){.cinematic-prompt .liquid-prompt-actions{max-width:320px;gap:17px}.liquid-prompt-actions>a>div{min-width:245px}.cinematic-prompt .liquid-prompt-actions>a{font-size:11px}.liquid-prompt-actions>a>div{padding:21px 30px}.liquid-prompt-actions>a:hover>div{padding:24px 34px}}
+/* Aplicação explícita em todos os botões de ação do site. */
+.button.liquid-action{position:relative;isolation:isolate;overflow:hidden;border-radius:24px;border:1px solid #ffffff80;background:rgba(236,120,26,.48)!important;color:#6d350a;box-shadow:0 6px 6px #00000020,0 0 20px #0000000d;transition:padding .7s cubic-bezier(.175,.885,.32,2.2),border-radius .7s cubic-bezier(.175,.885,.32,2.2),transform .7s cubic-bezier(.175,.885,.32,2.2)}
+.button.liquid-action:hover{border-radius:32px;transform:translateY(-2px) scale(1.025);background:rgba(236,120,26,.58)!important}
+.button.liquid-action .liquid-glass-layers{z-index:-1}
+.button.liquid-action .liquid-tint{background:rgba(255,255,255,.25)}
+.button.liquid-action .liquid-shine{box-shadow:inset 2px 2px 1px 0 #ffffff80,inset -1px -1px 1px 1px #ffffff80}
+.cinematic-prompt .liquid-prompt-actions>a>div{background:rgba(236,120,26,.26);border:1px solid #ffffff75}
+.cinematic-prompt .liquid-prompt-actions>a:nth-child(2)>div{background:rgba(154,167,137,.16)}
+/* Dock de navegação: substitui o cabeçalho retangular. */
+.floating-glass-nav{position:fixed;top:22px;left:50%;transform:translateX(-50%);z-index:80;isolation:isolate;border-radius:26px;padding:10px;overflow:hidden;background:#ffffff18;border:1px solid #ffffff70;box-shadow:0 6px 6px #00000012,0 0 20px #00000009;transition:padding .7s cubic-bezier(.175,.885,.32,2.2),border-radius .7s cubic-bezier(.175,.885,.32,2.2);max-width:calc(100vw - 24px)}
+.floating-glass-nav:hover{padding:13px;border-radius:32px}
+.floating-nav-links{display:flex;align-items:center;justify-content:center;gap:3px;position:relative;z-index:1}
+.floating-nav-links>a{display:block;font-size:12px;font-weight:550;white-space:nowrap;padding:14px 19px;border-radius:18px;transition:background .3s,color .3s,transform .7s cubic-bezier(.175,.885,.32,2.2);color:#333d30}
+.floating-nav-links>a:hover{background:#ffffff7d;color:#d76f1b;transform:scale(1.04)}
+.floating-glass-nav .liquid-tint{background:#ffffff73}
+.hero-motion-toggle{top:25px}
+@media(max-width:760px){.floating-glass-nav{top:14px;padding:7px;border-radius:23px;width:max-content}.floating-glass-nav:hover{padding:8px}.floating-nav-links{gap:0}.floating-nav-links>a{font-size:10px;padding:12px 10px;border-radius:16px}.hero-motion-toggle{top:85px;right:16px;font-size:9px}}
+@media(max-width:360px){.floating-nav-links>a{font-size:9px;padding:12px 8px}}
+/* Logo PNG integrada ao dock e ação principal em laranja Solux. */
+.floating-glass-nav{display:flex;align-items:center;gap:12px}
+.floating-glass-nav>.logo{position:relative;width:105px;height:44px;flex-shrink:0;margin-left:8px;z-index:1}
+.floating-glass-nav>.logo img{width:130px;left:-12px;top:-41px}
+.cinematic-prompt .liquid-prompt-actions>a:first-child>div{background:linear-gradient(135deg,#f58f2e,#e77416)!important;color:#fff;border-color:#ffb873;box-shadow:inset 0 1px 0 #ffffff80,0 6px 16px #d7752021!important}
+.cinematic-prompt .liquid-prompt-actions>a:first-child>div>div:nth-child(2){background:#ffffff0d!important}
+.button.liquid-action{background:linear-gradient(135deg,#f58f2e,#e77416)!important;color:#fff}
+@media(max-width:760px){.floating-glass-nav{gap:3px}.floating-glass-nav>.logo{width:65px;height:32px;margin-left:3px}.floating-glass-nav>.logo img{width:88px;left:-11px;top:-28px}.floating-nav-links>a{font-size:9px;padding:12px 7px}}
+@media(max-width:360px){.floating-nav-links>a{font-size:8px;padding:12px 5px}.floating-glass-nav>.logo{width:58px}}
+/* PNG com alpha real e vidro fosco com desfoque mais forte. */
+.logo{mix-blend-mode:normal}
+.logo img{position:static;width:100%;height:100%;max-width:100%;object-fit:contain}
+.floating-glass-nav>.logo{width:116px;height:44px;margin-left:2px;mix-blend-mode:normal}
+.floating-glass-nav>.logo img{position:static;width:100%;height:100%;object-fit:contain}
+.floating-glass-nav{background:rgba(249,249,242,.22);backdrop-filter:blur(26px) saturate(155%);-webkit-backdrop-filter:blur(26px) saturate(155%);border-color:rgba(255,255,255,.7);box-shadow:inset 0 1px 0 #ffffffb3,0 8px 28px #26352312}
+.floating-glass-nav .liquid-tint{background:rgba(255,255,255,.13)}
+.floating-glass-nav .liquid-distortion{backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+@media(max-width:760px){.floating-glass-nav>.logo{width:70px;height:32px;margin-left:0}.floating-glass-nav>.logo img{width:100%;height:100%;position:static}}
+@media(max-width:360px){.floating-glass-nav>.logo{width:61px}}
+/* Vidro mais translúcido, com bordas ópticas e reflexo direcional. */
+.floating-glass-nav{background:linear-gradient(115deg,rgba(255,255,255,.22),rgba(255,255,255,.045) 45%,rgba(255,255,255,.13));backdrop-filter:blur(20px) saturate(185%) contrast(1.06);-webkit-backdrop-filter:blur(20px) saturate(185%) contrast(1.06);border:1px solid rgba(255,255,255,.68);box-shadow:inset 0 2px 1px rgba(255,255,255,.9),inset 1px 0 1px rgba(255,255,255,.6),inset -1px -2px 2px rgba(255,255,255,.55),inset 0 -3px 8px rgba(94,112,95,.07),0 10px 30px rgba(38,53,35,.1),0 2px 4px rgba(38,53,35,.04)}
+.floating-glass-nav:before{content:'';position:absolute;inset:0;pointer-events:none;border-radius:inherit;background:linear-gradient(115deg,transparent 8%,rgba(255,255,255,.4) 22%,rgba(255,255,255,.07) 42%,transparent 57%,rgba(255,255,255,.18) 80%,transparent);z-index:0}
+.floating-glass-nav:after{content:'';position:absolute;inset:2px;border:1px solid rgba(255,255,255,.28);border-radius:inherit;pointer-events:none;z-index:0;mask-image:linear-gradient(125deg,#000,transparent 45%,#000)}
+.floating-glass-nav .liquid-tint{background:rgba(255,255,255,.035)}
+.floating-glass-nav .liquid-shine{box-shadow:inset 2px 2px 2px rgba(255,255,255,.65),inset -2px -2px 2px rgba(255,255,255,.35)}
+.floating-glass-nav .liquid-distortion{backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.floating-nav-links>a:hover{background:linear-gradient(120deg,#ffffff50,#ffffff18);box-shadow:inset 0 1px 0 #ffffff80}

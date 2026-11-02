@@ -1,0 +1,10 @@
+node_modules
+.git
+.deploy
+.build-ssr
+dist
+data
+output
+references
+.env
+.env.*
