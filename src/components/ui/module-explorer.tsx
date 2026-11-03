@@ -11,10 +11,10 @@ const modules=[
 ];
 
 const photographs=[
-  {src:'solux-locacao.webp',alt:'Cena ilustrativa de máquinas no pátio de manutenção',label:'CADA MÁQUINA CONTA.'},
-  {src:'solux-equipe.webp',alt:'Cena ilustrativa de profissionais analisando informações da obra',label:'DECISÕES COM CONTEXTO.'},
-  {src:'solux-civil.webp',alt:'Cena ilustrativa de um canteiro de construção civil',label:'DO PLANEJAMENTO AO CAMPO.'},
-  {src:'solux-industrial.webp',alt:'Cena ilustrativa de uma operação industrial',label:'RECURSOS NO LUGAR CERTO.'},
+  {src:'solux-operacao.webp',alt:'Cena ilustrativa de uma operação de máquinas no campo',label:'CADA MÁQUINA CONTA.'},
+  {src:'solux-industrial.webp',alt:'Cena ilustrativa de uma operação industrial acompanhada pela gestão',label:'DECISÕES COM CONTEXTO.'},
+  {src:'solux-campo.webp',alt:'Cena ilustrativa de um profissional acompanhando uma obra de terraplenagem',label:'DO PLANEJAMENTO AO CAMPO.'},
+  {src:'solux-locacao.webp',alt:'Cena ilustrativa de equipamentos e peças no pátio de manutenção',label:'RECURSOS NO LUGAR CERTO.'},
 ];
 export function ModuleExplorer(){
   const [selected,setSelected]=useState(0);
@@ -24,17 +24,21 @@ export function ModuleExplorer(){
   const [pageVisible,setPageVisible]=useState(true);
   const reduce=useReducedMotion();
   const root=useRef<HTMLDivElement>(null);
+  const scrollRoot=useRef<HTMLDivElement>(null);
+  const [scrollMode,setScrollMode]=useState(false);
+  useEffect(()=>{const query=matchMedia('(min-width: 900px) and (min-height: 760px) and (prefers-reduced-motion: no-preference)');const update=()=>setScrollMode(query.matches);update();query.addEventListener('change',update);return()=>query.removeEventListener('change',update)},[]);
+  useEffect(()=>{if(!scrollMode)return;let frame=0;const update=()=>{cancelAnimationFrame(frame);frame=requestAnimationFrame(()=>{if(!scrollRoot.current||paused)return;const rect=scrollRoot.current.getBoundingClientRect();const distance=rect.height-window.innerHeight;const progress=Math.max(0,Math.min(1,(100-rect.top)/Math.max(1,distance)));if(rect.top<120&&rect.bottom>window.innerHeight-40)setSelected(Math.min(3,Math.floor(progress*4)))})};window.addEventListener('scroll',update,{passive:true});return()=>{cancelAnimationFrame(frame);window.removeEventListener('scroll',update)}},[scrollMode,paused]);
   const buttons=useRef<(HTMLButtonElement|null)[]>([]);
-  const playing=visible && pageVisible && !paused && !engaged && !reduce;
+  const playing=!scrollMode && visible && pageVisible && !paused && !engaged && !reduce;
   useEffect(()=>{const observer=new IntersectionObserver(([entry])=>setVisible(entry.isIntersecting),{threshold:.25});if(root.current)observer.observe(root.current);const update=()=>setPageVisible(!document.hidden);update();document.addEventListener('visibilitychange',update);return()=>{observer.disconnect();document.removeEventListener('visibilitychange',update)}},[]);
   useEffect(()=>{if(!playing)return;const timer=window.setTimeout(()=>setSelected(i=>(i+1)%modules.length),6500);return()=>clearTimeout(timer)},[playing,selected]);
   const current=modules[selected];const photo=photographs[selected];
-  return <div ref={root} className="module-explorer module-photographic" onMouseEnter={()=>setEngaged(true)} onMouseLeave={()=>setEngaged(false)} onFocusCapture={()=>setEngaged(true)} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget))setEngaged(false)}}>
+  return <div ref={scrollRoot} className={scrollMode?"module-scroll-stage":""}><div ref={root} className="module-explorer module-photographic" onMouseEnter={()=>setEngaged(true)} onMouseLeave={()=>setEngaged(false)} onFocusCapture={()=>setEngaged(true)} onBlurCapture={e=>{if(!e.currentTarget.contains(e.relatedTarget))setEngaged(false)}}>
     <div className="module-navigation" role="tablist" aria-label="Explorar funcionalidades">{modules.map((module,i)=>{const Icon=module.icon;return <button key={module.title} id={'module-tab-'+i} ref={el=>{buttons.current[i]=el}} role="tab" aria-selected={selected===i} aria-controls="module-panel" tabIndex={selected===i?0:-1} onClick={()=>setSelected(i)} onKeyDown={e=>{let next=i;if(e.key==='ArrowRight')next=(i+1)%4;else if(e.key==='ArrowLeft')next=(i+3)%4;else if(e.key==='Home')next=0;else if(e.key==='End')next=3;else return;e.preventDefault();setSelected(next);buttons.current[next]?.focus()}}><small>0{i+1}</small><Icon size={18} strokeWidth={1.5}/><span>{module.short}</span>{selected===i&&<span className="photo-tab-progress"><span key={selected+'-'+playing} style={{animationPlayState:playing?'running':'paused'}}/></span>}</button>})}</div>
     <div className="module-body" role="tabpanel" id="module-panel" aria-labelledby={'module-tab-'+selected}>
       <AnimatePresence mode="wait" initial={false}><motion.div key={selected} className="module-information" initial={{opacity:0,y:reduce?0:10}} animate={{opacity:1,y:0}} exit={{opacity:0,y:reduce?0:-6}} transition={{duration:reduce?0:.25}}><span className="module-kicker">{current.kicker}</span><h3>{current.heading}</h3><p>{current.description}</p><ul>{current.items.map(text=><li key={text}><CircleCheck size={14} strokeWidth={1.4}/>{text}</li>)}</ul><a href="#contato">Conhecer {current.title.toLowerCase()} <ArrowUpRight size={17}/></a></motion.div></AnimatePresence>
       <div className="module-photograph">{photographs.map((image,i)=><motion.img key={image.src} src={assetUrl('/images/'+image.src)} alt={image.alt} width="1440" height="1024" loading="lazy" initial={false} animate={{opacity:selected===i?1:0,scale:selected===i?1:1.035}} transition={{duration:reduce?0:.7,ease:[.22,1,.36,1]}} aria-hidden={selected!==i}/>)}<div className="module-photo-shade"/><span className="module-photo-index">EM CAMPO / 0{selected+1}</span><div className="module-photo-caption"><span>{photo.label}</span><strong>{current.title}</strong><p>{current.caption}</p></div></div>
     </div>
-    <div className="module-player"><span>Uma operação. Todos os detalhes.</span><div><button type="button" onClick={()=>setPaused(p=>!p)} aria-label={paused||reduce?'Ativar troca automática':'Pausar troca automática'} disabled={!!reduce}>{paused||reduce?<Play size={14}/>:<Pause size={14}/>}<span>{reduce?'Troca manual':paused?'Retomar':'Automático'}</span></button><span className="module-page">0{selected+1} / 04</span><button type="button" aria-label="Módulo anterior" onClick={()=>setSelected(i=>(i+3)%4)}><ChevronLeft size={18}/></button><button type="button" aria-label="Próximo módulo" onClick={()=>setSelected(i=>(i+1)%4)}><ChevronRight size={18}/></button></div></div>
-  </div>;
+    <div className="module-player"><span>{scrollMode?"Role para explorar os módulos":"Uma operação. Todos os detalhes."}</span><div><button type="button" onClick={()=>setPaused(p=>!p)} aria-label={paused||reduce?'Ativar troca automática':'Pausar troca automática'} disabled={!!reduce}>{paused||reduce?<Play size={14}/>:<Pause size={14}/>}<span>{reduce?'Troca manual':paused?'Retomar':scrollMode?'Ao rolar':'Automático'}</span></button><span className="module-page">0{selected+1} / 04</span><button type="button" aria-label="Módulo anterior" onClick={()=>setSelected(i=>(i+3)%4)}><ChevronLeft size={18}/></button><button type="button" aria-label="Próximo módulo" onClick={()=>setSelected(i=>(i+1)%4)}><ChevronRight size={18}/></button></div></div>
+  </div></div>;
 }
