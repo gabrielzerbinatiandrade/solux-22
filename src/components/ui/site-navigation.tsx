@@ -1,7 +1,6 @@
 import {assetUrl} from '../../assets';
 import {useEffect, useRef, useState} from 'react';
 import {ArrowUpRight} from 'lucide-react';
-import {GlassLayers} from './liquid-glass';
 
 const links=[['O sistema','sistema'],['Funcionalidades','funcionalidades'],['Segmentos','segmentos'],['Conteúdos','conteudos']];
 export function SiteNavigation(){
@@ -15,6 +14,6 @@ export function SiteNavigation(){
     window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);update();
     return()=>{window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);cancelAnimationFrame(frame)};
   },[]);
-  return <nav ref={nav} className={'floating-glass-nav refined-nav '+(dark?'nav-on-dark':'')} aria-label="Navegação principal"><GlassLayers/><a className="nav-wordmark" href="#inicio" aria-label="Solux início"><img src={assetUrl('/solux-logo-transparent.png')} alt="Solux Sistema Gerencial"/></a><div className="floating-nav-links">{links.map(([title,id])=><a key={id} href={`#${id}`} aria-current={active===id?'location':undefined}>{title}</a>)}</div><a className="nav-demo" href="#contato">Demonstração <ArrowUpRight size={14}/></a></nav>;
+  return <nav ref={nav} className={'floating-glass-nav refined-nav '+(dark?'nav-on-dark':'')} aria-label="Navegação principal" style={{background:"transparent",backdropFilter:"none",WebkitBackdropFilter:"none",boxShadow:"none",borderColor:"transparent"}}><a className="nav-wordmark" href="#inicio" aria-label="Solux início"><img src={assetUrl('/solux-logo-transparent.png')} alt="Solux Sistema Gerencial"/></a><div className="floating-nav-links">{links.map(([title,id])=><a key={id} href={`#${id}`} aria-current={active===id?'location':undefined}>{title}</a>)}</div><a className="nav-demo" href="#contato">Demonstração <ArrowUpRight size={14}/></a></nav>;
 }
 
