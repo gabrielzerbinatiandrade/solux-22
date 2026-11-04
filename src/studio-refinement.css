@@ -172,3 +172,33 @@
 .cinematic-prompt .impact-actions>a:focus-visible{outline:2px solid #111;outline-offset:5px}
 @media(max-width:760px){.cinematic-prompt .impact-secondary{padding:13px 12px}.cinematic-prompt .impact-photo{box-shadow:0 15px 32px -13px #25190e40}}
 @media(prefers-reduced-motion:reduce){.cinematic-prompt .impact-primary:after{display:none}}
+.solux-immersive{position:relative;background:#111;height:200vh;color:#fff}
+.solux-immersive-sticky{height:100svh;position:sticky;top:0;overflow:hidden;background:#171717}
+.solux-immersive-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transform-origin:60% 48%}
+.solux-immersive-shade{position:absolute;inset:0;background:linear-gradient(90deg,#0009,transparent 80%),linear-gradient(0deg,#000c,transparent 80%,#0004)}
+.solux-immersive-copy{position:absolute;bottom:130px;left:7%;right:7%;max-width:1300px;margin:auto}
+.solux-scene-label{display:flex;align-items:center;gap:10px;font:9px monospace;letter-spacing:2px;color:#fff9;margin-bottom:28px}.solux-scene-label>i{width:5px;height:5px;background:#f47b20;border-radius:50%}
+.solux-immersive h1{font-family:'Outfit',sans-serif;font-size:clamp(54px,7.8vw,119px);font-weight:450;letter-spacing:-.055em;line-height:.99;color:#fff;margin:0}.solux-immersive h1>span{display:block}.solux-immersive h1>span:first-child{font-size:.6em;font-weight:400;color:#fff;margin-bottom:12px}.solux-immersive h1>span:last-child{color:#fff}
+.solux-immersive-bottom{display:flex;align-items:flex-end;justify-content:space-between;gap:30px;margin-top:30px;max-width:850px}.solux-immersive-bottom>p{font-size:13px;line-height:1.8;color:#fffb}.solux-immersive-bottom>a{display:flex;align-items:center;justify-content:space-between;gap:35px;border:1px solid #ff9b4e;background:#f47b20;padding:19px 23px;border-radius:3px;font-size:12px;color:white;transition:background .25s,transform .25s}.solux-immersive-bottom>a:hover{background:#df6912;transform:translateY(-2px)}
+.solux-immersive-foot{position:absolute;bottom:30px;left:7%;right:7%;display:flex;justify-content:space-between;gap:20px;padding-top:22px;border-top:1px solid #ffffff40;color:#ffffff90;font:8px monospace;letter-spacing:1px}.solux-immersive-foot>a{display:flex;gap:15px;align-items:center;color:#fff}.solux-scene-progress{position:absolute;top:-1px;left:0;width:100%;height:2px;transform-origin:left;background:#f47b20}
+.solux-hero-bridge{position:absolute;bottom:0;left:0;right:0;height:38vh;background:#fff;color:#111;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px;border-radius:24px 24px 0 0;box-shadow:0 -30px 90px #0002}.solux-hero-bridge>span{font:8px monospace;letter-spacing:2px;color:#888}.solux-hero-bridge>strong{font:400 clamp(28px,3.7vw,50px)/1.1 'Outfit',sans-serif;letter-spacing:-1px;text-align:center}.solux-hero-bridge>a{color:#f47b20}
+@media(max-width:760px){.solux-immersive{height:170vh}.solux-immersive-copy{left:25px;right:25px;bottom:130px}.solux-immersive h1{font-size:58px}.solux-scene-label{font-size:7px;letter-spacing:1px;margin-bottom:22px}.solux-immersive-bg{object-position:62% center}.solux-immersive-shade{background:linear-gradient(0deg,#000e,transparent 95%),linear-gradient(90deg,#0007,transparent)}.solux-immersive-bottom{display:block;margin-top:23px}.solux-immersive-bottom>p{font-size:12px}.solux-immersive-bottom>a{display:inline-flex;margin-top:22px;padding:17px 21px;font-size:11px}.solux-immersive-foot{left:25px;right:25px;font-size:6px}.solux-immersive-foot>span:last-child{display:none}.solux-hero-bridge{height:30vh;padding:25px}.solux-hero-bridge>strong{font-size:31px}}
+@media(prefers-reduced-motion:reduce){.solux-immersive{height:130vh}.solux-hero-bridge{height:30vh}}
+/* Four scroll chapters, inspired by the supplied cinematic reference. */
+.solux-story{height:550svh;background:#171717}
+.solux-story .solux-immersive-sticky{height:100svh}
+.solux-story .solux-immersive-bg{transform-origin:60% 50%;will-change:transform}
+.solux-story .solux-immersive-shade{background:linear-gradient(0deg,#000e,transparent 85%),linear-gradient(90deg,#0008,transparent 90%),linear-gradient(180deg,#0005,transparent 25%)}
+.solux-story-scenes{position:absolute;inset:0;pointer-events:none}
+.solux-scroll-scene{position:absolute;left:6%;right:6%;bottom:130px;pointer-events:none}
+.solux-scroll-scene h1,.solux-scroll-scene h2{font-family:'Outfit',sans-serif;font-weight:650;letter-spacing:-.055em;line-height:1.02;color:#fff;margin:0;font-size:clamp(38px,5.5vw,84px)}
+.solux-scroll-scene.scene-0 h1{font-size:clamp(110px,18vw,270px);font-weight:650;letter-spacing:-.06em;line-height:.85}
+.scene-line{display:block;overflow:hidden;padding-bottom:.1em}
+.scene-line>span{display:block}
+.solux-story .solux-scene-label{font-size:9px;letter-spacing:1.6px;margin-bottom:24px}
+.solux-scene-copy{display:flex;align-items:center;gap:40px;margin-top:23px;max-width:900px}
+.solux-scene-copy>p{max-width:390px;font-size:14px;line-height:1.7;color:#fff9}
+.solux-scene-copy>a{pointer-events:auto;display:inline-flex;align-items:center;gap:30px;background:#f47b20;color:#fff;padding:19px 23px;border-radius:3px;font-size:12px}
+.solux-story-top{position:absolute;top:110px;left:6%;right:6%;display:flex;justify-content:space-between;border-bottom:1px solid #ffffff30;padding-bottom:16px;font:10px monospace;color:#fffc;letter-spacing:.5px}.solux-story-top i{font-style:normal;color:#f47b20;margin:0 8px}.solux-story-top>a{display:flex;gap:15px;align-items:center;font-size:9px}
+.solux-story .solux-immersive-foot{left:6%;right:6%;bottom:30px}
+@media(max-width:760px){.solux-story{height:440svh}.solux-scroll-scene{left:25px;right:25px;bottom:125px}.solux-scroll-scene h2{font-size:clamp(29px,7.4vw,46px);letter-spacing:-.04em}.solux-scroll-scene.scene-0 h1{font-size:27vw}.solux-story .solux-scene-label{font-size:7px;letter-spacing:1px}.solux-scene-copy{display:block;margin-top:20px}.solux-scene-copy>p{font-size:12px;max-width:300px}.solux-scene-copy>a{margin-top:20px;font-size:11px;padding:17px 20px}.solux-story-top{top:94px;left:25px;right:25px;font-size:8px}.solux-story-top>a{font-size:7px;gap:7px}.solux-story .solux-immersive-foot{left:25px;right:25px}.solux-story .solux-immersive-foot>span:last-child{display:block}.solux-story .solux-immersive-foot>a{display:none}}
