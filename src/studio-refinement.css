@@ -202,3 +202,9 @@
 .solux-story-top{position:absolute;top:110px;left:6%;right:6%;display:flex;justify-content:space-between;border-bottom:1px solid #ffffff30;padding-bottom:16px;font:10px monospace;color:#fffc;letter-spacing:.5px}.solux-story-top i{font-style:normal;color:#f47b20;margin:0 8px}.solux-story-top>a{display:flex;gap:15px;align-items:center;font-size:9px}
 .solux-story .solux-immersive-foot{left:6%;right:6%;bottom:30px}
 @media(max-width:760px){.solux-story{height:440svh}.solux-scroll-scene{left:25px;right:25px;bottom:125px}.solux-scroll-scene h2{font-size:clamp(29px,7.4vw,46px);letter-spacing:-.04em}.solux-scroll-scene.scene-0 h1{font-size:27vw}.solux-story .solux-scene-label{font-size:7px;letter-spacing:1px}.solux-scene-copy{display:block;margin-top:20px}.solux-scene-copy>p{font-size:12px;max-width:300px}.solux-scene-copy>a{margin-top:20px;font-size:11px;padding:17px 20px}.solux-story-top{top:94px;left:25px;right:25px;font-size:8px}.solux-story-top>a{font-size:7px;gap:7px}.solux-story .solux-immersive-foot{left:25px;right:25px}.solux-story .solux-immersive-foot>span:last-child{display:block}.solux-story .solux-immersive-foot>a{display:none}}
+.notebook-presentation{background:#f8f8f6;position:relative;overflow:clip;scroll-margin-top:95px}
+.notebook-section-heading{text-align:center;padding:75px 25px 0;position:relative;z-index:2}
+.notebook-section-heading>span{font:8px monospace;letter-spacing:2px;color:#999}
+.notebook-section-heading>h2{font:450 clamp(30px,4vw,52px)/1.1 'Outfit',sans-serif;letter-spacing:-1.5px;color:#111;margin-top:20px}
+.notebook-presentation .cinematic-caption{display:none}
+@media(max-width:760px){.notebook-section-heading{padding-top:50px}.notebook-section-heading>h2{font-size:31px;letter-spacing:-1px}}
