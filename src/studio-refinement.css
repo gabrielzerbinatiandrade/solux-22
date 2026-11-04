@@ -208,3 +208,10 @@
 .notebook-section-heading>h2{font:450 clamp(30px,4vw,52px)/1.1 'Outfit',sans-serif;letter-spacing:-1.5px;color:#111;margin-top:20px}
 .notebook-presentation .cinematic-caption{display:none}
 @media(max-width:760px){.notebook-section-heading{padding-top:50px}.notebook-section-heading>h2{font-size:31px;letter-spacing:-1px}}
+.solux-story .solux-immersive-sticky{background:#f8f8f6}
+.solux-exit-frame{position:absolute;inset:0;overflow:hidden;will-change:clip-path;background:#171717}
+.solux-notebook-wash{position:absolute;inset:0;background:#f8f8f6;pointer-events:none}
+.solux-story-scenes{z-index:1}.solux-story-top,.solux-story .solux-immersive-foot{z-index:2}
+.notebook-presentation{margin-top:-1px}
+.notebook-presentation .cinematic-sticky{padding-top:30px}
+@media(max-width:760px){.notebook-presentation .cinematic-sticky{padding-top:15px}}

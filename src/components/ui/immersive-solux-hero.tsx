@@ -22,14 +22,20 @@ export function CinematicHero(){
  useMotionValueEvent(progress,'change',v=>setActive(Math.min(3,Math.floor(Math.max(0,v)*4))));
  const scale=useTransform(progress,[0,.04,.85,1],[1.85,1.85,1,1]);
  const x=useTransform(progress,[0,.85],['-8%','0%']);
- const exit=useTransform(progress,[.94,1],[1,0]);
+ const exit=useTransform(progress,[.82,.91],[1,0]);
+ const transitionOpacity=useTransform(progress,[.83,.99],[0,1]);
+ const frame=useTransform(progress,[.82,1],['inset(0% 0% 0% 0% round 0px)','inset(7% 6% 11% 6% round 22px)']);
+ const interfaceOpacity=useTransform(progress,[.83,.94],[1,0]);
  return <section ref={root} className="solux-immersive solux-story" aria-label="Solux, gestão para terraplenagem">
   <div className="solux-immersive-sticky">
+   <motion.div className="solux-exit-frame" style={quiet?{}:{clipPath:frame}}>
    <motion.img className="solux-immersive-bg" src={assetUrl('/images/solux-escritorio-campo.webp')} alt="Cena ilustrativa de um escritório de obra com vista para a terraplanagem" fetchPriority="high" width="1536" height="1024" style={quiet?{}:{scale,x}}/>
    <div className="solux-immersive-shade"/>
+   </motion.div>
+   <motion.div className="solux-notebook-wash" style={{opacity:transitionOpacity}} aria-hidden="true"/>
    <motion.div className="solux-story-scenes" style={{opacity:exit}}>{scenes.map((_,i)=><Scene key={i} index={i} progress={progress} quiet={quiet} active={active===i}/>)}</motion.div>
-   <div className="solux-story-top" aria-live="off"><span>0{active+1} <i>/</i> {scenes[active].label}</span><a href="#sistema">Conhecer o sistema <ArrowUpRight size={13}/></a></div>
-   <div className="solux-immersive-foot"><motion.div className="solux-scene-progress" style={{scaleX:progress}}/><span>SOLUX / DO CAMPO À GESTÃO</span><a href="#sistema">[ role para explorar ] <ArrowDown size={15}/></a><span>0{active+1} / 04</span></div>
+   <motion.div className="solux-story-top" style={{opacity:interfaceOpacity}} aria-live="off"><span>0{active+1} <i>/</i> {scenes[active].label}</span><a href="#sistema">Conhecer o sistema <ArrowUpRight size={13}/></a></motion.div>
+   <motion.div className="solux-immersive-foot" style={{opacity:interfaceOpacity}}><motion.div className="solux-scene-progress" style={{scaleX:progress}}/><span>SOLUX / DO CAMPO À GESTÃO</span><a href="#sistema">[ role para explorar ] <ArrowDown size={15}/></a><span>0{active+1} / 04</span></motion.div>
   </div>
  </section>
 }
