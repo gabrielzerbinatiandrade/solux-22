@@ -319,11 +319,12 @@ export function CinematicHero({
           <h1 className="impact-title"><span className="text-track">A obra não para.</span><span className="text-days">Sua gestão<br/>acompanha.</span></h1>
           <p className="impact-description">O Solux é um software de gestão para terraplenagem. Controle frota, abastecimentos, obras e financeiro em um só sistema, 100% em nuvem.</p>
           <div className="impact-actions"><a className="impact-primary" href="#contato"><GlassLayers/>Agendar demonstração <ArrowUpRight size={17}/></a><a className="impact-secondary" href="#sistema">Conhecer o Solux <ArrowDown size={15}/></a></div>
-          <div className="impact-meta"><span>FROTA</span><i/><span>OBRAS</span><i/><span>FINANCEIRO</span><span className="impact-online"><b/>100% ONLINE</span></div>
+          <div className="hero-operation-strip"><div><span>01 / CAMPO</span><strong>Frota e obras</strong></div><div><span>02 / ESCRITÓRIO</span><strong>Financeiro integrado</strong></div><a href="#funcionalidades" aria-label="Explorar os módulos do Solux"><ArrowUpRight size={22}/></a></div>
         </div>
         <div className="impact-visual">
           <div className="impact-orange-plane"/>
           <div className="impact-photo"><img width="1536" height="1024" fetchPriority="high" src={assetUrl('/images/solux-campo.webp')} alt="Cena ilustrativa de um profissional acompanhando a operação de terraplenagem"/><div className="impact-photo-shade"/><span className="impact-photo-index">SOLUX / EM CAMPO</span><div className="impact-photo-caption"><span>DA OPERAÇÃO AO RESULTADO.</span><strong>Quem move a terra<br/>precisa de visão.</strong></div></div>
+          <div className="hero-detail-photo"><img src={assetUrl('/images/solux-operacao.webp')} alt="Cena ilustrativa da operação no campo" width="320" height="220"/><span>DO CAMPO À GESTÃO <ArrowUpRight size={12}/></span></div>
           <div className="impact-outline" aria-hidden="true">SX</div>
           <div className="impact-scroll-cue"><span>EXPLORE UMA NOVA VISÃO DA SUA GESTÃO</span><ArrowDown size={16}/></div>
         </div>
