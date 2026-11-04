@@ -3,11 +3,12 @@ import {motion, useScroll, useTransform, useSpring, useMotionValue, useReducedMo
 import {Play, Volume2, VolumeX, Pause} from 'lucide-react';
 
 /** Linguagem do prompt cinematic: sequência de scroll, materiais físicos e luz interativa. */
-export function CinematicLaptop({preview,onPlay,embedded=false,playbackEnabled=true}:{preview:ReactNode,onPlay:()=>void,embedded?:boolean,playbackEnabled?:boolean}) {
+export function CinematicLaptop({preview,onPlay,embedded=false,playbackEnabled=true,forceMotion=false}:{preview:ReactNode,onPlay:()=>void,embedded?:boolean,playbackEnabled?:boolean,forceMotion?:boolean}) {
   const stage=useRef<HTMLDivElement>(null);
   const screen=useRef<HTMLDivElement>(null);
   const video=useRef<HTMLVideoElement>(null);
-  const reduced=useReducedMotion();
+  const systemReduced=useReducedMotion();
+  const reduced=systemReduced&&!forceMotion;
   const visible=useInView(screen,{amount:.65});
   const [muted,setMuted]=useState(true);
   const [playing,setPlaying]=useState(false);
