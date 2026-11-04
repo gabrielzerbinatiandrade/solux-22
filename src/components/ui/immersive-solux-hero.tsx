@@ -1,41 +1,35 @@
-import {useRef,useState} from 'react';
-import {motion,useScroll,useTransform,useSpring,useMotionValueEvent,useReducedMotion,type MotionValue} from 'framer-motion';
-import {ArrowDown,ArrowUpRight} from 'lucide-react';
+import {useState} from 'react';
+import {motion,useReducedMotion} from 'framer-motion';
+import {ArrowDown,ArrowUpRight,Pause,Play} from 'lucide-react';
 import {assetUrl} from '../../assets';
-const scenes=[{label:'Escritório',lines:['SOLUX'],copy:'A obra não para. Sua gestão acompanha.'},{label:'Operação',lines:['DO ESCRITÓRIO','PARA O CAMPO.'],copy:'Frota, abastecimentos e manutenção conectados à sua operação.'},{label:'Visão integrada',lines:['CADA OBRA.','UMA VISÃO COMPLETA.'],copy:'Obras, estoque e financeiro no mesmo sistema, 100% em nuvem.'},{label:'Sua gestão',lines:['QUEM MOVE A TERRA','PRECISA DE VISÃO.'],copy:'Conheça o software de gestão para terraplenagem feito para a sua rotina.'}];
-function Scene({index,progress,quiet,active}:{index:number,progress:MotionValue<number>,quiet:boolean|null,active:boolean}){
- const start=index*.24;const end=start+.23;
- const opacity=useTransform(progress,[Math.max(0,start-.01),start+.025,end-.035,end],[index===0?1:0,1,1,index===3?1:0]);
- const lift=useTransform(progress,[start,start+.035,end-.035,end],[index===0?0:105,0,0,index===3?0:-105]);
- const scene=scenes[index];
- return <motion.div className={'solux-scroll-scene scene-'+index} style={{opacity}} aria-hidden={!active} inert={!active}>
-  <span className="solux-scene-label"><i/>0{index+1} / {scene.label.toUpperCase()}</span>
-  {index===0?<h1><span className="scene-line"><motion.span style={quiet?{}:{y:lift}}>{scene.lines[0]}</motion.span></span></h1>:<h2>{scene.lines.map(line=><span className="scene-line" key={line}><motion.span style={quiet?{}:{y:lift}}>{line}</motion.span></span>)}</h2>}
-  <div className="solux-scene-copy"><p>{scene.copy}</p>{index===3&&<a href="#contato">Agendar demonstração <ArrowUpRight size={19}/></a>}</div>
- </motion.div>
-}
+import {CinematicLaptop} from './cinematic-laptop';
+import './unified-hero.css';
+
+// Seconds: adjust these values to tune the opening without changing the layout.
+const timing={photo:.95,text:.8,laptop:1.65,laptopDelay:.25};
+const ease=[.22,1,.36,1] as const;
 export function CinematicHero(){
- const root=useRef<HTMLElement>(null);const quiet=useReducedMotion();const [active,setActive]=useState(0);
- const {scrollYProgress}=useScroll({target:root,offset:['start start','end end']});
- const smooth=useSpring(scrollYProgress,{stiffness:95,damping:30,mass:.35});
- const progress=quiet?scrollYProgress:smooth;
- useMotionValueEvent(progress,'change',v=>setActive(Math.min(3,Math.floor(Math.max(0,v)*4))));
- const scale=useTransform(progress,[0,.04,.85,1],[1.85,1.85,1,1]);
- const x=useTransform(progress,[0,.85],['-8%','0%']);
- const exit=useTransform(progress,[.82,.91],[1,0]);
- const transitionOpacity=useTransform(progress,[.83,.99],[0,1]);
- const frame=useTransform(progress,[.82,1],['inset(0% 0% 0% 0% round 0px)','inset(7% 6% 11% 6% round 22px)']);
- const interfaceOpacity=useTransform(progress,[.83,.94],[1,0]);
- return <section ref={root} className="solux-immersive solux-story" aria-label="Solux, gestão para terraplenagem">
-  <div className="solux-immersive-sticky">
-   <motion.div className="solux-exit-frame" style={quiet?{}:{clipPath:frame}}>
-   <motion.img className="solux-immersive-bg" src={assetUrl('/images/solux-escritorio-campo.webp')} alt="Cena ilustrativa de um escritório de obra com vista para a terraplanagem" fetchPriority="high" width="1536" height="1024" style={quiet?{}:{scale,x}}/>
-   <div className="solux-immersive-shade"/>
+ const reduce=useReducedMotion();
+ const [paused,setPaused]=useState(false);
+ const animate=!reduce&&!paused;
+ return <section className="unified-hero" aria-label="Solux, software de gestão para terraplenagem">
+  <motion.img className="unified-photo" src={assetUrl('/images/solux-escritorio-campo.webp')} alt="Cena ilustrativa de um escritório com vista para a operação de terraplenagem" width="1920" height="1080" fetchPriority="high" initial={reduce?false:{opacity:0,scale:1.045}} animate={{opacity:1,scale:1}} transition={{duration:animate?timing.photo:0,ease}}/>
+  <div className="unified-shade" aria-hidden="true"/>
+  <div className="unified-layout">
+   <motion.div className="unified-copy" initial={reduce?false:{opacity:0,y:20}} animate={{opacity:1,y:0}} transition={{duration:animate?timing.text:0,delay:animate?.12:0,ease}}>
+    <span className="unified-eyebrow"><i/>SOLUX / GESTÃO PARA TERRAPLENAGEM</span>
+    <h1>A obra não para.<br/><span>Sua gestão<br/>acompanha.</span></h1>
+    <p>Do campo ao escritório, a mesma informação. Controle frota, obras, estoque e financeiro em um só sistema, 100% em nuvem.</p>
+    <div className="unified-actions"><a href="#contato">Agendar demonstração <ArrowUpRight size={18}/></a><a href="#sistema">Conhecer o sistema <ArrowDown size={16}/></a></div>
    </motion.div>
-   <motion.div className="solux-notebook-wash" style={{opacity:transitionOpacity}} aria-hidden="true"/>
-   <motion.div className="solux-story-scenes" style={{opacity:exit}}>{scenes.map((_,i)=><Scene key={i} index={i} progress={progress} quiet={quiet} active={active===i}/>)}</motion.div>
-   <motion.div className="solux-story-top" style={{opacity:interfaceOpacity}} aria-live="off"><span>0{active+1} <i>/</i> {scenes[active].label}</span><a href="#sistema">Conhecer o sistema <ArrowUpRight size={13}/></a></motion.div>
-   <motion.div className="solux-immersive-foot" style={{opacity:interfaceOpacity}}><motion.div className="solux-scene-progress" style={{scaleX:progress}}/><span>SOLUX / DO CAMPO À GESTÃO</span><a href="#sistema">[ role para explorar ] <ArrowDown size={15}/></a><span>0{active+1} / 04</span></motion.div>
+   <div className="unified-device-stage" id="apresentacao">
+    <div className="unified-device-light" aria-hidden="true"/>
+    <motion.div className="unified-device" initial={reduce?false:{opacity:0,x:-230,y:35,rotateY:-42,rotateZ:-7,scale:.72}} animate={{opacity:1,x:0,y:0,rotateY:-7,rotateZ:0,scale:1}} transition={{duration:animate?timing.laptop:0,delay:animate?timing.laptopDelay:0,ease}}>
+     <CinematicLaptop embedded preview={null} onPlay={()=>{}} playbackEnabled={!paused}/>
+    </motion.div>
+    <div className="unified-device-foot"><span>DO CAMPO À TELA</span><span>UMA OPERAÇÃO CONECTADA.</span></div>
+   </div>
   </div>
+  <div className="unified-footer"><span>FROTA / OBRAS / FINANCEIRO</span><a href="#sistema">Explore o Solux <ArrowDown size={14}/></a><button onClick={()=>setPaused(v=>!v)} aria-pressed={paused} aria-label={paused?'Ativar movimento':'Pausar movimento'}>{paused?<Play size={12}/>:<Pause size={12}/>} {paused?'Ativar':'Pausar'} motion</button></div>
  </section>
 }
