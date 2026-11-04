@@ -10,7 +10,7 @@ export function SiteNavigation(){
   const nav=useRef<HTMLElement>(null);
   useEffect(()=>{
     let frame=0;
-    const update=()=>{frame=0;const line=window.innerHeight*.35;let current='';for(const [,id]of links){const r=document.getElementById(id)?.getBoundingClientRect();if(r&&r.top<=line&&r.bottom>line)current=id}setActive(current);const segments=document.getElementById('segmentos')?.getBoundingClientRect();const y=(nav.current?.getBoundingClientRect().bottom??85);setDark(!!segments&&segments.top<y&&segments.bottom>y)};
+    const update=()=>{frame=0;const line=window.innerHeight*.35;let current='';for(const [,id]of links){const r=document.getElementById(id)?.getBoundingClientRect();if(r&&r.top<=line&&r.bottom>line)current=id}setActive(current);const segments=document.getElementById('segmentos')?.getBoundingClientRect();const y=(nav.current?.getBoundingClientRect().bottom??85);const hero=document.querySelector('.unified-hero')?.getBoundingClientRect();setDark((!!segments&&segments.top<y&&segments.bottom>y)||(!!hero&&hero.top<y&&hero.bottom>y))};
     const schedule=()=>{if(!frame)frame=requestAnimationFrame(update)};
     window.addEventListener('scroll',schedule,{passive:true});window.addEventListener('resize',schedule);update();
     return()=>{window.removeEventListener('scroll',schedule);window.removeEventListener('resize',schedule);cancelAnimationFrame(frame)};

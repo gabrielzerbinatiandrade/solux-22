@@ -215,3 +215,11 @@
 .notebook-presentation{margin-top:-1px}
 .notebook-presentation .cinematic-sticky{padding-top:30px}
 @media(max-width:760px){.notebook-presentation .cinematic-sticky{padding-top:15px}}
+/* Transparent navigation: remove the stacked opaque glass fills. */
+.floating-glass-nav.refined-nav{background:#ffffff08;border:1px solid #ffffff30;box-shadow:0 5px 22px #00000008;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+.floating-glass-nav.refined-nav:before{display:none}
+.floating-glass-nav.refined-nav>.liquid-glass-layers{display:none}
+.floating-glass-nav.refined-nav.nav-on-dark{background:#00000014;border-color:#ffffff35;box-shadow:0 5px 24px #00000012}
+.floating-glass-nav.refined-nav.nav-on-dark .floating-nav-links>a{color:#fff}
+.floating-glass-nav.refined-nav.nav-on-dark .nav-wordmark img{filter:brightness(0) invert(1)}
+.floating-glass-nav.refined-nav.nav-on-dark .floating-nav-links>a:hover,.floating-glass-nav.refined-nav.nav-on-dark .floating-nav-links>a[aria-current=location]{background:#ffffff14;color:#fff}
